@@ -1,9 +1,15 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgreuser",
-    "database": "Walker Johnson",
-    "host": "localhost",
-    "dialect": "postgres"
+    "username": "evanj",
+    "password": "BsOS19WLn8Npbafl5d68g9LMbZMbWqfK",
+    "database": "render_postgres_3fr8",
+    "host": "dpg-cnnjngud3nmc73aatfe0-a.oregon-postgres.render.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   }
 }

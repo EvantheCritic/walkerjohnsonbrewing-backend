@@ -3,11 +3,15 @@ const CORS = require('cors');
 const walkerjohnson = express();
 const context = require('./models');
 
-context.sequelize.sync().then(() => {
+context.sequelize.sync()
+  .then(() => {
     walkerjohnson.listen(2999, () => {
-        console.log("Server running on port 2999");
+      console.log("Server running on port 2999");
     });
-});
+  })
+  .catch((error) => {
+    console.error('XDDCC:', error);
+  });
 
 walkerjohnson.use(express.json());
 walkerjohnson.use(CORS());
