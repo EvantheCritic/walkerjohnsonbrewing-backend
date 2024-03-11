@@ -13,7 +13,7 @@
     }
   },
   "production": {
-    "use_env_variable": "postgres://evanj:BsOS19WLn8Npbafl5d68g9LMbZMbWqfK@dpg-cnnjngud3nmc73aatfe0-a/r",
+    "use_env_variable": "postgres://evanj:BsOS19WLn8Npbafl5d68g9LMbZMbWqfK@dpg-cnnjngud3nmc73aatfe0-a.oregon-postgres.render.com/render_postgres_3fr8",
     "dialect": "postgres"
   }
 }
