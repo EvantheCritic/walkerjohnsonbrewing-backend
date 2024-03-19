@@ -28,3 +28,38 @@ app.get('/', (req, res) => {
         }
     });
 });
+
+app.get('/Home', (req, res) => {
+    console.log("Home get triggered");
+});
+
+app.get('/WriteReview', (req, res) => {
+    console.log('Write Review get triggered');
+});
+
+function insertIntoTable(data, table) {
+    return new Promise((resolve) => {
+        const sql = `INSERT INTO ${table} SET ?`;
+        db.query(sql, data, (err, result) => {
+            if (err) {
+                console.log("Failed to post:", err);
+                reject(err);
+                return;
+            }
+            resolve(result);
+        });
+    });
+}
+
+app.post("/WriteReview", async (req, res) => {
+    try {
+        console.log("Write Review post triggered");
+        const reviewData = req.body;
+        const result = await insertIntoTable(reviewData, 'reviews');
+        res.status(200).json({ message: 'Review written successfully', result });
+        res.redirect('/Home')
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server Error' });
+    }
+});
