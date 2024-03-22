@@ -63,3 +63,28 @@ app.post("/WriteReview", async (req, res) => {
         res.status(500).json({ error: 'Server Error' });
     }
 });
+
+app.post("/Catering", async (req, res) => {
+    console.log("Catering post triggered");
+    try {
+        
+        const confirmation = req.body;
+        let result = {}
+        if (confirmation.hasOwnProperty('sauce')) {
+            result = await insertIntoTable(confirmation, 'catering1');
+        }
+        else if (confirmation.hasOwnProperty('meat1')) {
+            result = await insertIntoTable(confirmation, 'catering2');
+        }
+        else if (confirmation.hasOwnProperty('beer1')) {
+            result = await insertIntoTable(confirmation, 'catering3');
+        }
+        else {
+            res.status(400).json({ error: 'confirmation missing necessary member variables' });
+        }
+        res.status(200).json({ message: 'Catering selection Sucesss', result });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server Error' });
+    }
+});
