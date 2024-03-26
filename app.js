@@ -69,6 +69,7 @@ app.post("/Catering", async (req, res) => {
     try {
         
         const confirmation = req.body;
+        confirmation.conID = generateConfirmationID();
         let result = {}
         if (confirmation.hasOwnProperty('sauce')) {
             result = await insertIntoTable(confirmation, 'catering1');
@@ -88,3 +89,37 @@ app.post("/Catering", async (req, res) => {
         res.status(500).json({ error: 'Server Error' });
     }
 });
+
+app.get("/Jobs", (req, res) => {
+    const table = req.query.table;
+    const sql = `SELECT * FROM ${table}`;
+    db.query(sql, (err, reviews) => {
+        if (err) {
+            res.status(500).json({ error: 'Failed to get jobs' });
+        } else {
+            res.json(reviews);
+        }
+    });
+});
+
+app.get("/AssignEmployees", (req, res) => {
+    const jobID = req.query.jobid;
+    const table = req.query.table;
+    const sql = `SELECT * FROM ${table}`;
+    db.query(sql, (err, reviews) => {
+        if (err) {
+            res.status(500).json({ error: 'Failed to get jobs' });
+        } else {
+            res.json(reviews);
+        }
+    });
+});
+
+function generateConfirmationID() {
+    let res = "";
+    for (let i = 0; i < 5; i++) {
+        let letter = String.fromCharCode((Math.random() * (90 - 65 + 1)) + 65);
+        res += letter;
+    }
+    return res;
+}
