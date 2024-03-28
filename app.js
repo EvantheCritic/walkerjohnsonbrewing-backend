@@ -102,10 +102,9 @@ app.get("/Jobs", (req, res) => {
     });
 });
 
-app.get("/AssignEmployees", (req, res) => {
-    const jobID = req.query.jobid;
-    const table = req.query.table;
-    const sql = `SELECT * FROM ${table}`;
+app.get("/CompletedJobs", (req, res) => {
+    console.log("Completed Jobs get called");
+    const sql = `SELECT * FROM completedJobs`;
     db.query(sql, (err, reviews) => {
         if (err) {
             res.status(500).json({ error: 'Failed to get jobs' });
