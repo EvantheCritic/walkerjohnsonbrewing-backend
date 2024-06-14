@@ -4,11 +4,11 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 2999;
 const db = mysql.createConnection({
-    host: 'wvulqmhjj9tbtc1w.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-    user: 'svw6esv82fagg4xt',
-    password: 'b8j8wos8qtkk0gog',
-    database: 'mupvs7oqx8ktfgj3'
-  });
+    host: 'localhost',
+    user: 'root',
+    password: 'mysql',
+    database: 'walker johnson'
+});
 
 db.connect(err => {
     if (err) throw err;
